@@ -11,7 +11,8 @@ public class Bean {
     private String name;
     private int weight;
 
-    public Bean() {}
+    public Bean() {
+    }
 
     public Bean(String name, int weight) {
         this.setName(name);
