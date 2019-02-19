@@ -2,7 +2,10 @@ package com.smolbeans.smolbeanapp.application;
 
 import com.smolbeans.smolbeanapp.daos.BeanDao;
 import com.smolbeans.smolbeanapp.entities.Bean;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -11,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 //@SpringBootApplication
+// ↑ Dit is een false positive volgens stackOverflow
 public class SmolbeanappApplication {
     private final BeanDao beanDao;
     private final BufferedReader beanInputReader;
