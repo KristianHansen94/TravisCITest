@@ -20,6 +20,10 @@ public class Bean {
     }
 
     // getters and setters for name and weight
+    public void setId(int id){
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -34,5 +38,10 @@ public class Bean {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", weight: " + weight;
     }
 }

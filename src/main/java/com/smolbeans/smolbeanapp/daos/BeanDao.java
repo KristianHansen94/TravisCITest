@@ -4,6 +4,7 @@ import com.smolbeans.smolbeanapp.entities.Bean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class BeanDao {
     private EntityManager entityManager;
@@ -14,15 +15,19 @@ public class BeanDao {
         this.entityTransaction = this.entityManager.getTransaction();
     }
 
-    public void persist(String name, int weight) {
+    public Bean persist(Bean bean) {
         beginTransaction();
-        Bean bean = new Bean(name, weight);
         entityManager.persist(bean);
         commitTransaction();
+        return bean;
     }
 
     public Bean find(int id) {
         return entityManager.find(Bean.class, id);
+    }
+
+    public List<Bean> findAll(){
+        return entityManager.createQuery("FROM Bean").getResultList();
     }
 
     public void update(int id, String name, int weight) {

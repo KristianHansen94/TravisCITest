@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 //@SpringBootApplication
 // ↑ Dit is een false positive volgens stackOverflow
@@ -38,28 +39,39 @@ public class SmolbeanappApplication {
     }
 
     private void run() throws IOException {
-        System.out.println("Enter an option: 1) Insert a new smolbean. 2) Find a smolbean. 3) Edit a smolbean. 4) Delete a smolbean.");
+        System.out.println("Enter an option: 1) Insert a new smolbean. 2) Find a smolbean. 3) Edit a smolbean. 4) Delete a smolbean. 5) Find all smolbeans.");
         int option = Integer.parseInt(beanInputReader.readLine());
         switch (option) {
             case 1:
                 persistNewUser();
+                run();
                 break;
             case 2:
                 fetchExistingUser();
+                run();
                 break;
             case 3:
                 updateExistingUser();
+                run();
                 break;
             case 4:
                 removeExistingUser();
+                run();
                 break;
+            case 5:
+                fetchAllUsers();
+                run();
+                break;
+            default:
+                System.out.println("Wrong command.");
+                run();
         }
     }
 
     private void persistNewUser() throws IOException {
         String name = requestStringInput("the name of the smolbean");
         int weight = requestIntegerInput("the weight of the smolbean");
-        beanDao.persist(name, weight);
+        beanDao.persist(new Bean(name, weight));
     }
 
     private void fetchExistingUser() throws IOException {
@@ -88,5 +100,12 @@ public class SmolbeanappApplication {
     private int requestIntegerInput(String request) throws IOException {
         System.out.printf("Enter %s: ", request);
         return Integer.parseInt(beanInputReader.readLine());
+    }
+
+    private void fetchAllUsers() throws IOException{
+        List<Bean> beans = beanDao.findAll();
+        for (Bean b : beans) {
+            System.out.println(b);
+        }
     }
 }
