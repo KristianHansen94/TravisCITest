@@ -44,28 +44,23 @@ public class SmolbeanappApplication {
         switch (option) {
             case 1:
                 persistNewUser();
-                run();
                 break;
             case 2:
                 fetchExistingUser();
-                run();
                 break;
             case 3:
                 updateExistingUser();
-                run();
                 break;
             case 4:
                 removeExistingUser();
-                run();
                 break;
             case 5:
                 fetchAllUsers();
-                run();
                 break;
             default:
                 System.out.println("Wrong command.");
-                run();
         }
+        run();
     }
 
     private void persistNewUser() throws IOException {
