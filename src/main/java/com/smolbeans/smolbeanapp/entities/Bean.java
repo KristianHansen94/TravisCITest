@@ -1,5 +1,7 @@
 package com.smolbeans.smolbeanapp.entities;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 
 @Entity

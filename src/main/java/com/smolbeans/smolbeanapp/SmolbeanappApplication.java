@@ -1,11 +1,9 @@
-package com.smolbeans.smolbeanapp.application;
+package com.smolbeans.smolbeanapp;
 
 import com.smolbeans.smolbeanapp.daos.BeanDao;
 import com.smolbeans.smolbeanapp.entities.Bean;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -14,31 +12,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-//@SpringBootApplication
+@SpringBootApplication
 // ↑ Dit is een false positive volgens stackOverflow
 public class SmolbeanappApplication {
-    private final BeanDao beanDao;
-    private final BufferedReader beanInputReader;
-
+    /*private final BeanDao beanDao;
+    private final BufferedReader beanInputReader;*/
 
     public static void main(String[] args) throws Exception {
-        //SpringApplication.run(SmolbeanappApplication.class, args);
+        SpringApplication.run(SmolbeanappApplication.class, args);
+    }
 
-        EntityManager entityManager = Persistence
+    public SmolbeanappApplication() {
+        /*EntityManager entityManager = Persistence
                 .createEntityManagerFactory("user-unit")
                 .createEntityManager();
-        BeanDao beanDao = new BeanDao(entityManager);
-        BufferedReader userInputReader =
-                new BufferedReader(new InputStreamReader(System.in));
-        new SmolbeanappApplication(beanDao, userInputReader).run();
+        beanDao = new BeanDao(entityManager);
+        beanInputReader = new BufferedReader(new InputStreamReader(System.in));*/
     }
 
-    public SmolbeanappApplication(BeanDao beanDao, BufferedReader beanInputReader) {
-        this.beanDao = beanDao;
-        this.beanInputReader = beanInputReader;
-    }
-
-    private void run() throws IOException {
+    /*private void run() throws IOException {
         System.out.println("Enter an option: 1) Insert a new smolbean. 2) Find a smolbean. 3) Edit a smolbean. 4) Delete a smolbean. 5) Find all smolbeans.");
         int option = Integer.parseInt(beanInputReader.readLine());
         switch (option) {
@@ -102,5 +94,5 @@ public class SmolbeanappApplication {
         for (Bean b : beans) {
             System.out.println(b);
         }
-    }
+    }*/
 }

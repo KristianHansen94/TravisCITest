@@ -1,10 +1,9 @@
-package com.smolbeans.smolbeanapp.rest;
+package com.smolbeans.smolbeanapp.application;
 
 import com.smolbeans.smolbeanapp.daos.BeanDao;
 import com.smolbeans.smolbeanapp.entities.Bean;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
