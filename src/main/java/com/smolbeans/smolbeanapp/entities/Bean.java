@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Bean {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private int weight;
 
@@ -22,7 +22,7 @@ public class Bean {
     }
 
     // getters and setters for name and weight
-    public void setId(int id){
+    public void setId(Long id){
         this.id = id;
     }
 

@@ -1,44 +1,45 @@
 package com.smolbeans.smolbeanapp.application;
 
-import com.smolbeans.smolbeanapp.daos.BeanDao;
 import com.smolbeans.smolbeanapp.entities.Bean;
+import com.smolbeans.smolbeanapp.rest.BeanRepository;
+import com.smolbeans.smolbeanapp.rest.BeanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-public class BeanController {
-    private final BeanDao repository;
 
-    BeanController(BeanDao repository){
-        this.repository = repository;
-    }
+@RestController
+public class BeanController implements BeanService {
+    @Autowired
+    private BeanRepository repository;
+
 
     @GetMapping("/beans")
-    List<Bean> getBeans(){
+    public List<Bean> getBeans(){
         return repository.findAll();
     }
 
     @PostMapping("/beans")
-    Bean newBean(@RequestBody Bean newBean){
-        return repository.persist(newBean);
+    public Bean newBean(@RequestBody Bean newBean){
+        return repository.save(newBean);
     }
 
     @GetMapping("/beans/{id}")
-    Bean getBean(@PathVariable("id") Long id){
-        return repository.find(id.intValue());
+    public Bean getBean(@PathVariable("id") Long id){
+        Bean gottenBean = repository.findById(id).get();
+        return gottenBean;
     }
 
     @PutMapping("/beans/{id}")
-    Bean replaceBean(@RequestBody Bean newBean, @PathVariable("id") Long id){
-        return repository.persist(newBean);
-//        return repository.findById(id).map(Bean -> {Bean.setName(newBean.getName());
-//        Bean.setWeight(newBean.getWeight());
-//        return repository.save(Bean);}).orElseGet(() -> {newBean.setId(id.intValue()); return repository.save(newBean);});
+    public Bean replaceBean(@RequestBody Bean newBean, @PathVariable("id") Long id){
+        return repository.findById(id).map(Bean -> {Bean.setName(newBean.getName());
+        Bean.setWeight(newBean.getWeight());
+        return repository.save(Bean);}).orElseGet(() -> {newBean.setId(id); return repository.save(newBean);});
     }
 
     @DeleteMapping("/beans/{id}")
-    void deleteBean(@PathVariable("id") Long id){
-        repository.remove(id.intValue());
+    public void deleteBean(@PathVariable("id") Long id){
+        repository.deleteById(id);
     }
 }

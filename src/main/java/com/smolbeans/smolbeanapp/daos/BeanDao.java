@@ -1,11 +1,6 @@
 package com.smolbeans.smolbeanapp.daos;
 
 import com.smolbeans.smolbeanapp.entities.Bean;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,7 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
-@Repository
+//@Repository
 public class BeanDao {
     private EntityManager entityManager;
     private EntityTransaction entityTransaction;
