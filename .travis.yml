@@ -1,6 +1,6 @@
 language: java
 
-script: mvn clean verify
+script: mvn run -e
 
 before_install:
   - chmod +x mvnw
